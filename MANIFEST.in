@@ -1,0 +1,5 @@
+include README
+include COPYRIGHT
+include src/include/*.h
+include tests/*.py
+include local_build_sample.py

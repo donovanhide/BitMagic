@@ -1,0 +1,20 @@
+Metadata-Version: 1.0
+Name: bitmagic
+Version: 0.2.1dev
+Summary: Python wrapper for BitMagic
+Home-page: http://pypi.python.org/pypi/bitmagic
+Author: William Waites
+Author-email: wwaites_at_gmail.com
+License: BSD
+Description: Python wrapper for BitMagic C++ Library
+        
+        BitMagic is available from http://bmagic.sourceforge.net/
+        
+        These Python bindings contain software that is
+        Copyright(c) 2002-2009 Anatoliy Kuznetsov(anatoliy_kuznetsov at yahoo.com)
+        
+        This software requires the Boost library from http://www.boost.org/
+        built with Python support.
+        
+Keywords: binary vector
+Platform: UNKNOWN

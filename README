@@ -1,0 +1,26 @@
+Python bindings for Bit Magic
+=============================
+
+Requires Boost from http://www.boost.org/ built with Python support.
+Unit tests require nose (just run: "easy_install nose")
+
+To install:
+
+	python setup.py install
+
+To run unit tests:
+
+	python setup.py nosetests --verbosity=2 -s --with-doctest
+
+To make development symlinks:
+
+	python setup.py develop
+
+To remove development symlinks:
+
+	python setup.py develop --uninstsall
+
+To set local build parameters, such as enabling 64 bit support, copy
+the file local_build_sample.py to local_build.py and edit to suit.
+See the Bit Magic documentation http://bmagic.sourceforge.net for
+possible compile-time parameters.
