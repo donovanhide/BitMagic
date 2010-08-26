@@ -40,17 +40,6 @@ For more information please visit:  http://bmagic.sourceforge.net
 namespace bm
 {
 
-/** @defgroup SSE2 Processor specific optimizations for SSE2 instructions
- *  @ingroup bmagic
- */
-
-
-
-
-
-
-
-
 
 /*!
     SSE2 optimized bitcounting function implements parallel bitcounting
@@ -296,7 +285,6 @@ bm::id_t sse2_bit_block_calc_count_change(const __m128i* BMRESTRICT block,
        
 
        // compare with zero
-       // SSE4: _mm_test_all_zero()
        {
            // b = (b & 0x55555555) + (b >> 1 & 0x55555555);
            //tmp1 = _mm_srli_epi32(b, 1);                    // tmp1 = (b >> 1 & 0x55555555)
@@ -331,8 +319,6 @@ bm::id_t sse2_bit_block_calc_count_change(const __m128i* BMRESTRICT block,
        // ---------------------------------------------------------------------
        {
            //__m128i b = _mm_load_si128(block);
-           // TODO: SSE4...
-           //w = _mm_extract_epi32(b, i);               
 
            const bm::word_t* BMRESTRICT blk = (const bm::word_t*) block;
 

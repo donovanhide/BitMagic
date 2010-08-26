@@ -29,6 +29,10 @@ For more information please visit:  http://bmagic.sourceforge.net
 #include "bmdef.h"
 #include "bmconst.h"
 
+#if defined(_M_AMD64) || defined(_M_X64) 
+#include <intrin.h>
+#endif
+
 namespace bm
 {
 
@@ -57,6 +61,15 @@ T bit_scan_fwd(T v)
         DeBruijn_bit_position<true>::_multiply[((word_t)((v & -v) * 0x077CB531U)) >> 27];
 }
 
+/**
+    Get minimum of 2 values
+*/
+template<typename T>
+T min_value(T v1, T v2)
+{
+    return v1 < v2 ? v1 : v2;
+}
+
 
 /**
     Fast loop-less function to find LOG2
@@ -81,10 +94,25 @@ inline bm::gap_word_t ilog2(gap_word_t x)
     if(x >= 1<<4)  { x>>=4; l |= 4; }
     if(x >= 1<<2)  { x>>=2; l |= 2; }
     if(x >= 1<<1)  l |=1;
-    return l;
+    return (bm::gap_word_t)l;
 }
 
-
+/**
+     Mini auto-pointer for internal memory management
+     @internal
+*/
+template<class T>
+class ptr_guard
+{
+public:
+    ptr_guard(T* p) : ptr_(p) {}
+    ~ptr_guard() { delete ptr_; }
+private:
+    ptr_guard(const ptr_guard<T>& p);
+    ptr_guard& operator=(const ptr_guard<T>& p);
+private:
+    T* ptr_;
+};
 
 /**
     Lookup table based integer LOG2
@@ -116,7 +144,7 @@ inline bm::gap_word_t ilog2_LUT<bm::gap_word_t>(bm::gap_word_t x)
     {
         l += 8; x >>= 8;
     }
-    return l + first_bit_table<true>::_idx[x];
+    return (bm::gap_word_t)(l + first_bit_table<true>::_idx[x]);
 }
 
 
